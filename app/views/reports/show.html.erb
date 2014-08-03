@@ -17,10 +17,10 @@
     <% @report.lines.each do |line| %>
       <tr class="<%= line.status %>-background">
         <td><%= line.address %></td>
-        <td><%= line.original_list_price %></td>
-        <td><%= line.list_price %></td>
-        <td><%= line.sale_price %></td>
-        <td><%= line.olp_to_sp_percentage %></td>
+        <td><%= number_to_currency(line.original_list_price) %></td>
+        <td><%= number_to_currency(line.list_price) %></td>
+        <td><%= number_to_currency(line.sale_price) %></td>
+        <td><%= number_to_percentage(line.olp_to_sp_percentage, precision: 2) %></td>
         <td><%= line.days_on_market %></td>
         <td><%= line.rooms %></td>
         <td><%= line.beds %></td>
