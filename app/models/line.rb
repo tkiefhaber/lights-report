@@ -1,8 +1,8 @@
 class Line < ActiveRecord::Base
   belongs_to :report
-  scope :green,  -> { where('olp_to_sp_percentage >= 100') }
-  scope :yellow, -> { where('olp_to_sp_percentage < 100 AND olp_to_sp_percentage >= 90') }
-  scope :red,    -> { where('olp_to_sp_percentage < 90') }
+  scope :green,  -> { where('sale_price / original_list_price >= 1.0') }
+  scope :yellow, -> { where('sale_price / original_list_price < 1.0 AND sale_price / original_list_price >= 0.9') }
+  scope :red,    -> { where('sale_price / original_list_price < 0.9') }
 
   def status
     if olp_to_sp_percentage >= 100
@@ -12,5 +12,9 @@ class Line < ActiveRecord::Base
     else
       'red'
     end
+  end
+
+  def olp_to_sp_percentage
+    @olp_to_sp_percentage ||= (sale_price / original_list_price) * 100
   end
 end
