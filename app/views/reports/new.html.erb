@@ -1,11 +1,23 @@
 <br/>
 <br/>
 <br/>
-<h3><a href='lights-report-headers.csv'>Click Me to download sample file to get csv with proper headers.</a></h3>
-<br/>
-<%= form_for @report do |f| %>
-  <%= f.file_field :report %>
-  <%= f.submit %>
-<% end %>
-<br/>
-<h4>use excel to remove all number formatting (no $, %, or delimiters) and then upload the csv</h4>
+<div class='box box-nomargin'>
+  <div class='box-header red-background'>
+    <div class='title'>Upload CSV</div>
+  </div>
+  <div class='box-content'>
+
+    <button href='lights-report-headers.csv' class='btn btn-success'>Click Me to download sample file to get csv with proper headers.</button>
+    <br/>
+    <br/>
+    <br/>
+    <%= form_for @report do |f| %>
+      <%= f.file_field :report, class: 'file-input-wrapper btn' %>
+      <%= f.submit 'Upload', :class => 'btn btn-success btn-medium' %>
+    <% end %>
+    <br/>
+    <p>use excel to remove all number formatting (no $, %, or delimiters) and then upload the csv</p>
+    <p>date format should be YYYY-MM-DD, example: 2014-02-28</p>
+  </div>
+</div>
+
