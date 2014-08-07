@@ -36,36 +36,40 @@
 </table>
 
 <h2>Nitty Gritty</h2>
-<table class='data-table-column-filter table table-bordered'>
-  <thead>
-    <td>Address</td>
-    <td>Original List Price</td>
-    <td>List Price</td>
-    <td>Sale Price</td>
-    <td>OLP/SP</td>
-    <td>Days on Market</td>
-    <td>Rooms</td>
-    <td>Beds</td>
-    <td>Baths</td>
-    <td>Closed</td>
-  </thead>
-  <tbody>
-    <% @report.lines.each do |line| %>
-      <tr class="<%= line.status %>-background">
-        <td><%= line.address %></td>
-        <td><%= number_to_currency(line.original_list_price) %></td>
-        <td><%= number_to_currency(line.list_price) %></td>
-        <td><%= number_to_currency(line.sale_price) %></td>
-        <td><%= number_to_percentage(line.olp_to_sp_percentage, precision: 2) %></td>
-        <td><%= line.days_on_market %></td>
-        <td><%= line.rooms %></td>
-        <td><%= line.beds %></td>
-        <td><%= line.baths %></td>
-        <td><%= line.closed.to_s(:db) %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class='responsive-table'>
+  <div class='scrollable-area'>
+    <table class='data-table-column-filter table table-bordered'>
+      <thead>
+        <td>Address</td>
+        <td>Original List Price</td>
+        <td>List Price</td>
+        <td>Sale Price</td>
+        <td>OLP/SP</td>
+        <td>Days on Market</td>
+        <td>Rooms</td>
+        <td>Beds</td>
+        <td>Baths</td>
+        <td>Closed</td>
+      </thead>
+      <tbody>
+        <% @report.lines.each do |line| %>
+          <tr class="<%= line.status %>-background">
+            <td><%= line.address %></td>
+            <td><%= number_to_currency(line.original_list_price) %></td>
+            <td><%= number_to_currency(line.list_price) %></td>
+            <td><%= number_to_currency(line.sale_price) %></td>
+            <td><%= number_to_percentage(line.olp_to_sp_percentage, precision: 2) %></td>
+            <td><%= line.days_on_market %></td>
+            <td><%= line.rooms %></td>
+            <td><%= line.beds %></td>
+            <td><%= line.baths %></td>
+            <td><%= line.closed.to_s(:db) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
 <script>
 $(function () {
     $('#container').highcharts({
