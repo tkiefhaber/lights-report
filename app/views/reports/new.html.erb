@@ -1,7 +1,11 @@
 <br/>
 <br/>
 <br/>
+<h3><a href='lights-report-headers.csv'>Click Me to download sample file to get csv with proper headers.</a></h3>
+<br/>
 <%= form_for @report do |f| %>
   <%= f.file_field :report %>
   <%= f.submit %>
 <% end %>
+<br/>
+<h4>use excel to remove all number formatting (no $, %, or delimiters) and then upload the csv</h4>
