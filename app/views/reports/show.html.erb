@@ -1,5 +1,7 @@
 <br/>
 <br/>
+
+<div id="container" style="min-width: 310px; height: 250px; max-width: 600px; margin: 0 auto"></div>
 <table class='data-table-column-filter table table-bordered'>
   <thead>
     <td>Address</td>
@@ -30,3 +32,50 @@
     <% end %>
   </tbody>
 </table>
+<script>
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+        title: {
+            text: 'Lights <br/>  Breakdown',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 50
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textShadow: '0px 1px 2px black'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '75%']
+            }
+        },
+        colors: ['#49bf67', '#fcd052', '#f34541'],
+        tooltip: {
+            enabled: false,
+        },
+        series: [{
+            type: 'pie',
+            name: 'Lights Breakdown',
+            innerSize: '50%',
+            data: [
+                ['',  <%= @report.percent_green %>],
+                ['', <%= @report.percent_yellow %>],
+                ['',    <%= @report.percent_red %>],
+            ]
+        }]
+    });
+});
+</script>
