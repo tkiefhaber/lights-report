@@ -5,9 +5,9 @@ class Line < ActiveRecord::Base
   scope :red,    -> { where('olp_to_sp_percentage < 90') }
 
   def status
-    if olp_to_sp_percentage >= 90
+    if olp_to_sp_percentage >= 100
       'green'
-    elsif olp_to_sp_percentage < 90 && olp_to_sp_percentage >= 80
+    elsif olp_to_sp_percentage < 100 && olp_to_sp_percentage >= 90
       'banana'
     else
       'red'
