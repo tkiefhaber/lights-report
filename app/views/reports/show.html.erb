@@ -2,6 +2,40 @@
 <br/>
 
 <div id="container" style="min-width: 310px; height: 250px; max-width: 600px; margin: 0 auto"></div>
+
+<h2>Averages</h2>
+<table class='table table-bordered'>
+  <thead>
+    <td>Original List Price</td>
+    <td>List Price</td>
+    <td>Sale Price</td>
+    <td>OLP/SP</td>
+    <td>Days on Market</td>
+    <td>Rooms</td>
+    <td>Beds</td>
+    <td>Baths</td>
+  </thead>
+  <tbody>
+    <% ['green', 'yellow', 'red'].each do |scope| %>
+      <% next unless @report.lines.send("#{scope}".to_sym).present? %>
+      <% obj = @report.send("#{scope}_average".to_sym) %>
+      <% color = scope == 'yellow' ? 'banana' : scope %>
+      <tr class="<%= color %>-background">
+        <td><%= number_to_currency obj.avg_original_list_price %></td>
+        <td><%= number_to_currency obj.avg_list_price %></td>
+        <td><%= number_to_currency obj.avg_sale_price %></td>
+        <td><%= number_to_percentage obj.avg_olp_to_sp_percentage %></td>
+        <td><%= obj.avg_days_on_market %></td>
+        <td><%= obj.avg_rooms %></td>
+        <td><%= obj.avg_beds %></td>
+        <td><%= obj.avg_baths %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<h2>Nitty Gritty</h2>
 <table class='data-table-column-filter table table-bordered'>
   <thead>
     <td>Address</td>
