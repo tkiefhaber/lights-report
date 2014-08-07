@@ -1,2 +1,2 @@
-address,original_list_price,list_price,sale_price,olp_to_sp_percentage,days_on_market,rooms,beds,baths,closed
-FLORENCE AVE,130000,59000,55000,42,671,5,2,1,2013-10-29
+address,original_list_price,list_price,sale_price,days_on_market,rooms,beds,baths,closed
+FLORENCE AVE,130000,59000,55000,671,5,2,1,2013-10-29
