@@ -65,7 +65,7 @@
               </thead>
               <tbody>
                 <% lines = @report.lines.green + @report.lines.yellow + @report.lines.red %>
-                <% lines.each do |line| %>
+                <% lines.sort_by(&:olp_to_sp_percentage).reverse.each do |line| %>
                   <tr class="<%= line.status %>-background">
                     <td><%= line.address %></td>
                     <td><%= number_to_currency(line.original_list_price) %></td>
