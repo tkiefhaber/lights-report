@@ -1,84 +1,76 @@
 <%= wicked_pdf_stylesheet_link_tag "application" -%>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="box">
-      <div class="box-header white-background">
-        <div class="title">Averages</div>
-      </div>
-      <div class="box box-content">
-        <table class='table table-bordered'>
-          <thead>
-            <td>Original List Price</td>
-            <td>List Price</td>
-            <td>Sale Price</td>
-            <td>OLP/SP</td>
-            <td>Days on Market</td>
-            <td>Rooms</td>
-            <td>Beds</td>
-            <td>Baths</td>
-          </thead>
-          <tbody>
-            <% ['green', 'yellow', 'red'].each do |scope| %>
-              <% next unless @report.lines.send("#{scope}".to_sym).present? %>
-              <% obj = @report.send("#{scope}_average".to_sym) %>
-              <% color = scope == 'yellow' ? 'banana' : scope %>
-              <tr class="<%= color %>-background">
-                <td><%= number_to_currency obj.avg_original_list_price %></td>
-                <td><%= number_to_currency obj.avg_list_price %></td>
-                <td><%= number_to_currency obj.avg_sale_price %></td>
-                <td><%= number_to_percentage obj.avg_olp_to_sp_percentage %></td>
-                <td><%= obj.avg_days_on_market %></td>
-                <td><%= obj.avg_rooms %></td>
-                <td><%= obj.avg_beds %></td>
-                <td><%= obj.avg_baths %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div class="box">
+  <div class="box-header white-background">
+    <div class="title">Averages</div>
+  </div>
+  <div class="box box-content">
+    <table class='table table-bordered'>
+      <thead>
+        <td>Original List Price</td>
+        <td>List Price</td>
+        <td>Sale Price</td>
+        <td>OLP/SP</td>
+        <td>Days on Market</td>
+        <td>Rooms</td>
+        <td>Beds</td>
+        <td>Baths</td>
+      </thead>
+      <tbody>
+        <% ['green', 'yellow', 'red'].each do |scope| %>
+          <% next unless @report.lines.send("#{scope}".to_sym).present? %>
+          <% obj = @report.send("#{scope}_average".to_sym) %>
+          <% color = scope == 'yellow' ? 'banana' : scope %>
+          <tr class="<%= color %>-background">
+            <td><%= number_to_currency obj.avg_original_list_price %></td>
+            <td><%= number_to_currency obj.avg_list_price %></td>
+            <td><%= number_to_currency obj.avg_sale_price %></td>
+            <td><%= number_to_percentage obj.avg_olp_to_sp_percentage %></td>
+            <td><%= obj.avg_days_on_market %></td>
+            <td><%= obj.avg_rooms %></td>
+            <td><%= obj.avg_beds %></td>
+            <td><%= obj.avg_baths %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="box">
-      <div class="box-header white-background">
-        <div class="title">Nitty Gritty</div>
-      </div>
-      <div class="box box-content">
-        <table class='table table-bordered'>
-          <thead>
-            <td>Address</td>
-            <td>Original List Price</td>
-            <td>List Price</td>
-            <td>Sale Price</td>
-            <td>OLP/SP</td>
-            <td>Days on Market</td>
-            <td>Rooms</td>
-            <td>Beds</td>
-            <td>Baths</td>
-            <td>Closed</td>
-          </thead>
-          <tbody>
-            <% lines = @report.lines.green + @report.lines.yellow + @report.lines.red %>
-            <% lines.sort_by(&:olp_to_sp_percentage).reverse.each do |line| %>
-              <tr class="<%= line.status %>-background">
-                <td><%= line.address %></td>
-                <td><%= number_to_currency(line.original_list_price) %></td>
-                <td><%= number_to_currency(line.list_price) %></td>
-                <td><%= number_to_currency(line.sale_price) %></td>
-                <td><%= number_to_percentage(line.olp_to_sp_percentage, precision: 2) %></td>
-                <td><%= line.days_on_market %></td>
-                <td><%= line.rooms %></td>
-                <td><%= line.beds %></td>
-                <td><%= line.baths %></td>
-                <td><%= line.closed.to_s(:db) %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div class="box">
+  <div class="box-header white-background">
+    <div class="title">Nitty Gritty</div>
+  </div>
+  <div class="box box-content">
+    <table class='table table-bordered'>
+      <thead>
+        <td>Address</td>
+        <td>Original List Price</td>
+        <td>List Price</td>
+        <td>Sale Price</td>
+        <td>OLP/SP</td>
+        <td>Days on Market</td>
+        <td>Rooms</td>
+        <td>Beds</td>
+        <td>Baths</td>
+        <td>Closed</td>
+      </thead>
+      <tbody>
+        <% lines = @report.lines.green + @report.lines.yellow + @report.lines.red %>
+        <% lines.sort_by(&:olp_to_sp_percentage).reverse.each do |line| %>
+          <tr class="<%= line.status %>-background">
+            <td><%= line.address %></td>
+            <td><%= number_to_currency(line.original_list_price) %></td>
+            <td><%= number_to_currency(line.list_price) %></td>
+            <td><%= number_to_currency(line.sale_price) %></td>
+            <td><%= number_to_percentage(line.olp_to_sp_percentage, precision: 2) %></td>
+            <td><%= line.days_on_market %></td>
+            <td><%= line.rooms %></td>
+            <td><%= line.beds %></td>
+            <td><%= line.baths %></td>
+            <td><%= line.closed.to_s(:db) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
