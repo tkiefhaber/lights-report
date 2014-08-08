@@ -1,5 +1,5 @@
 class Report < ActiveRecord::Base
-  has_many :lines
+  has_many :lines, dependent: :destroy
 
   def percent_green
     lines.green.count.to_f / lines.count.to_f

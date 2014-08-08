@@ -1,0 +1,44 @@
+<br/>
+<br/>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="box">
+      <div class="box box-content">
+        <div class="text-right">
+          <%= link_to 'New Report', :action => "new", :class => 'text-right' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <div class="box bordered-box green-border">
+      <div class="box-header white-background">
+        <div class="title">Reports</div>
+      </div>
+      <div class="box box-content">
+        <table class='table table-bordered'>
+          <thead>
+            <td>Name</td>
+            <td>Created</td>
+            <td>Site</td>
+            <td>PDF</td>
+            <td>Delete</td>
+          </thead>
+          <tbody>
+            <% @reports.each do |report| %>
+              <tr>
+                <td><%= report.name %></td>
+                <td><%= report.created_at.to_date.to_s(:db) %></td>
+                <td><%= link_to 'Online', report_path(report), class: 'btn btn-success' %></td>
+                <td><%= link_to 'PDF', action: 'show', id: report, format: :pdf, class: 'btn btn-warning' %></td>
+                <td><%= button_to 'Delete', report_path(report), method: :delete, class: 'btn btn-danger' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
