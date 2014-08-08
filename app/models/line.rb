@@ -1,5 +1,6 @@
 class Line < ActiveRecord::Base
   belongs_to :report
+  default_scope { where('sale_price / original_list_price') }
   scope :green,  -> { where('sale_price / original_list_price >= 1.0') }
   scope :yellow, -> { where('sale_price / original_list_price < 1.0 AND sale_price / original_list_price >= 0.9') }
   scope :red,    -> { where('sale_price / original_list_price < 0.9') }

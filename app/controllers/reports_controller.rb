@@ -2,6 +2,13 @@ require 'csv'
 class ReportsController < ApplicationController
   def show
     @report = Report.find params[:id]
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "lights_report_#{@report.id}",
+               :template => 'reports/show.pdf.erb'
+      end
+    end
   end
 
   def new
