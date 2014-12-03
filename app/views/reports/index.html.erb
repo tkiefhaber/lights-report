@@ -23,7 +23,7 @@
             <td>Name</td>
             <td>Created</td>
             <td>Site</td>
-            <td>PDF</td>
+            <td>Excel</td>
             <td>Delete</td>
           </thead>
           <tbody>
@@ -32,7 +32,7 @@
                 <td><%= report.name %></td>
                 <td><%= report.created_at.to_date.to_s(:db) %></td>
                 <td><%= link_to 'Online', report_path(report), class: 'btn btn-success' %></td>
-                <td><%= link_to 'Excel', action: 'show', id: report, format: :xls %></td>
+                <td><%= link_to 'Editable Excel', action: 'show', id: report, format: :xls %></td>
                 <td><%= button_to 'Delete', report_path(report), method: :delete, class: 'btn btn-danger' %></td>
               </tr>
             <% end %>
