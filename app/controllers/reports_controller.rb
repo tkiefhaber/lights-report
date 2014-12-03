@@ -13,6 +13,7 @@ class ReportsController < ApplicationController
         render :pdf => "lights_report_#{@report.id}",
                :template => 'reports/show.pdf.erb'
       end
+      format.xls
     end
   end
 

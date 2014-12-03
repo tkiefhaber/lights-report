@@ -32,7 +32,7 @@
                 <td><%= report.name %></td>
                 <td><%= report.created_at.to_date.to_s(:db) %></td>
                 <td><%= link_to 'Online', report_path(report), class: 'btn btn-success' %></td>
-                <td><%= link_to 'PDF', action: 'show', id: report, format: :pdf, class: 'btn btn-warning' %></td>
+                <td><%= link_to 'Excel', action: 'show', id: report, format: :xls %></td>
                 <td><%= button_to 'Delete', report_path(report), method: :delete, class: 'btn btn-danger' %></td>
               </tr>
             <% end %>
