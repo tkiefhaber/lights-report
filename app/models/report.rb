@@ -2,15 +2,19 @@ class Report < ActiveRecord::Base
   has_many :lines, dependent: :destroy
 
   def percent_green
-    lines.green.count.to_f / lines.count.to_f
+    @percent_green ||= lines.green.count.to_f / lines.count.to_f
   end
 
   def percent_yellow
-    lines.yellow.count.to_f / lines.count.to_f
+    @percent_yellow ||= lines.yellow.count.to_f / lines.count.to_f
   end
 
   def percent_red
-    lines.red.count.to_f / lines.count.to_f
+    @percent_red ||= lines.red.count.to_f / lines.count.to_f
+  end
+
+  def total_percentage
+    [percent_green, percent_yellow, percent_red].sum
   end
 
   def green_average
@@ -23,6 +27,38 @@ class Report < ActiveRecord::Base
 
   def red_average
     @red_average ||= ViewObj.new(self, :red)
+  end
+
+  def avg_olp
+    lines.average(:original_list_price)
+  end
+
+  def avg_lp
+    lines.average(:list_price)
+  end
+
+  def avg_sp
+    lines.average(:sale_price)
+  end
+
+  def avg_olp_to_sp
+    [percent_green, percent_yellow, percent_red].sum / 3
+  end
+
+  def avg_dom
+    lines.average(:days_on_market).to_i
+  end
+
+  def avg_rooms
+    lines.average(:rooms).to_i
+  end
+
+  def avg_beds
+    lines.average(:beds).to_i
+  end
+
+  def avg_baths
+    lines.average(:baths).to_i
   end
 
 
@@ -62,6 +98,10 @@ class Report < ActiveRecord::Base
 
     def avg_baths
       lines.average(:baths).to_i
+    end
+
+    def count
+      lines.count
     end
   end
 end

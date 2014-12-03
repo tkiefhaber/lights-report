@@ -5,20 +5,13 @@
   <div class='box-content'>
 
     <div class='text-center'>
-      <button href='lights-report-headers.csv' class='btn btn-success'>Click Me to download sample file to get csv with proper headers.</button>
-      <br/>
-      <br/>
-      <br/>
       <%= form_for @report do |f| %>
         <%= f.label :name %>
-        <%= f.text_field :name %>
+        <%= f.text_field :name, placeholder: 'example: Maplewood Sept 2014', size: 75 %>
         <%= f.file_field :report, class: 'file-input-wrapper btn' %>
         <%= f.submit 'Upload', :class => 'btn btn-success btn-medium' %>
       <% end %>
       <br/>
-      <p>the example file has a sample row for formatting, but just in case see below</p>
-      <p>use excel to remove all number formatting (no $, %, or delimiters) and then upload the csv</p>
-      <p>date format should be YYYY-MM-DD, example: 2014-02-28</p>
     </div>
   </div>
 </div>

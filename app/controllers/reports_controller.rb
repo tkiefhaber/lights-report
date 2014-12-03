@@ -22,10 +22,10 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.create
-    ::CSV.parse(params[:report][:report].read, headers: true) do |csv|
-      @report.lines.create(csv.to_hash)
+    ::CSV.read(params[:report][:report].path, col_sep: "\t", headers: true).each do |row|
+      LineCreator.create(@report, row.to_hash)
     end
-    @report.name = params[:report][:name]
+    @report.name = params[:report][:name] || Date.today.to_s
     @report.save!
     redirect_to @report
   end
