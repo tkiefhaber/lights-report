@@ -67,19 +67,19 @@ class LineCreator
   end
 
   def year
-    ('20' + date_parts[2].split(' ').first).to_i
-  end
-
-  def month
     date_parts[0].to_i
   end
 
-  def day
+  def month
     date_parts[1].to_i
   end
 
+  def day
+    date_parts[2].split(' ').first.to_i
+  end
+
   def date_parts
-    @date ||= row["ClosedDate"].split('/')
+    @date ||= row["ClosedDate"].split('-')
   end
 
 end

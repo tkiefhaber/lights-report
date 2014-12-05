@@ -23,7 +23,9 @@ class ReportsController < ApplicationController
 
   def create
     @report = Report.create
-    ::CSV.read(params[:report][:report].path, col_sep: "\t", headers: true).each do |row|
+    report_string = File.open(params[:report][:report].path).read.to_s.gsub('\r', '\n')
+    ::CSV.parse(report_string.gsub("\r", "\n"), col_sep: "\t", headers: true).each do |row|
+      next unless row.to_hash["MlsNum"].present?
       LineCreator.create(@report, row.to_hash)
     end
     @report.name = params[:report][:name] || Date.today.to_s
