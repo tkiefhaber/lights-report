@@ -35,15 +35,15 @@ class LineCreator
   end
 
   def original_list_price
-    BigDecimal.new(row["OrigListPrice"])
+    row["OrigListPrice"].to_i
   end
 
   def list_price
-    BigDecimal.new(row["ListPrice"])
+    row["ListPrice"].to_i
   end
 
   def sale_price
-    BigDecimal.new(row["SalesPrice"])
+    row["SalesPrice"].to_i
   end
 
   def days_on_market

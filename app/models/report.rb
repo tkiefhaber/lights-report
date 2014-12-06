@@ -14,7 +14,7 @@ class Report < ActiveRecord::Base
   end
 
   def total_percentage
-    [percent_green, percent_yellow, percent_red].sum
+    [percent_green, percent_yellow, percent_red].sum.to_i
   end
 
   def green_average
@@ -42,7 +42,7 @@ class Report < ActiveRecord::Base
   end
 
   def avg_olp_to_sp
-    [percent_green, percent_yellow, percent_red].sum / 3
+    ((green_average.avg_olp_to_sp_percentage + yellow_average.avg_olp_to_sp_percentage + red_average.avg_olp_to_sp_percentage) / 3).to_f
   end
 
   def avg_dom
@@ -69,19 +69,19 @@ class Report < ActiveRecord::Base
     end
 
     def avg_original_list_price
-      lines.average(:original_list_price)
+      lines.average(:original_list_price).to_i
     end
 
     def avg_list_price
-      lines.average(:list_price)
+      lines.average(:list_price).to_i
     end
 
     def avg_sale_price
-      lines.average(:sale_price)
+      lines.average(:sale_price).to_i
     end
 
     def avg_olp_to_sp_percentage
-      lines.map(&:olp_to_sp_percentage).inject(:+) / lines.count
+      (lines.map(&:olp_to_sp_percentage).inject(:+) / lines.count).to_i
     end
 
     def avg_days_on_market

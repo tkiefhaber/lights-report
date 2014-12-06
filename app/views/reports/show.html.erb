@@ -44,10 +44,10 @@
               <% color = scope == 'yellow' ? 'banana' : scope %>
               <tr class="<%= color %>-background">
                 <td><%= obj.count %></td>
-                <td><%= number_to_currency obj.avg_original_list_price %></td>
-                <td><%= number_to_currency obj.avg_list_price %></td>
-                <td><%= number_to_currency obj.avg_sale_price %></td>
-                <td><%= number_to_percentage obj.avg_olp_to_sp_percentage %></td>
+                <td><%= number_to_currency obj.avg_original_list_price, precision: 0 %></td>
+                <td><%= number_to_currency obj.avg_list_price, precision: 0 %></td>
+                <td><%= number_to_currency obj.avg_sale_price, precision: 0 %></td>
+                <td><%= number_to_percentage obj.avg_olp_to_sp_percentage, precision: 0 %></td>
                 <td><%= obj.avg_days_on_market %></td>
                 <td><%= obj.avg_rooms %></td>
                 <td><%= obj.avg_beds %></td>
@@ -57,9 +57,9 @@
             <% end %>
             <tr>
               <td><%= @report.lines.count %></td>
-              <td><%= number_to_currency @report.avg_olp %></td>
-              <td><%= number_to_currency @report.avg_lp %></td>
-              <td><%= number_to_currency @report.avg_sp %></td>
+              <td><%= number_to_currency @report.avg_olp, precision: 0 %></td>
+              <td><%= number_to_currency @report.avg_lp, precision: 0 %></td>
+              <td><%= number_to_currency @report.avg_sp, precision: 0 %></td>
               <td><%= number_to_percentage @report.avg_olp_to_sp, precision: 0 %></td>
               <td><%= @report.avg_dom %></td>
               <td><%= @report.avg_rooms %></td>
@@ -102,10 +102,10 @@
                   <% @report.lines.send(scope).sort_by(&:olp_to_sp_percentage).reverse.each do |line| %>
                     <tr class="<%= line.status %>-background">
                       <td><%= line.address %></td>
-                      <td><%= number_to_currency(line.original_list_price) %></td>
-                      <td><%= number_to_currency(line.list_price) %></td>
-                      <td><%= number_to_currency(line.sale_price) %></td>
-                      <td><%= number_to_percentage(line.olp_to_sp_percentage, precision: 2) %></td>
+                      <td><%= number_to_currency line.original_list_price, precision: 0 %></td>
+                      <td><%= number_to_currency line.list_price, precision: 0 %></td>
+                      <td><%= number_to_currency line.sale_price, precision: 0 %></td>
+                      <td><%= number_to_percentage(line.olp_to_sp_percentage, precision: 0) %></td>
                       <td><%= line.days_on_market %></td>
                       <td><%= line.rooms %></td>
                       <td><%= line.beds %></td>
@@ -116,10 +116,10 @@
                   <% obj = @report.send("#{scope.to_s}_average".to_sym) %>
                   <tr>
                     <td><h5><%= obj.count %> Houses in this range</h5></td>
-                    <td><h5><%= number_to_currency obj.avg_original_list_price %></h5></td>
-                    <td><h5><%= number_to_currency obj.avg_list_price %></h5></td>
-                    <td><h5><%= number_to_currency obj.avg_sale_price %></h5></td>
-                    <td><h5><%= number_to_percentage obj.avg_olp_to_sp_percentage %></h5></td>
+                    <td><h5><%= number_to_currency obj.avg_original_list_price, precision: 0 %></h5></td>
+                    <td><h5><%= number_to_currency obj.avg_list_price, precision: 0 %></h5></td>
+                    <td><h5><%= number_to_currency obj.avg_sale_price, precision: 0 %></h5></td>
+                    <td><h5><%= number_to_percentage obj.avg_olp_to_sp_percentage, precision: 0 %></h5></td>
                     <td><h5><%= obj.avg_days_on_market %></h5></td>
                     <td><h5><%= obj.avg_rooms %></h5></td>
                     <td><h5><%= obj.avg_beds %></h5></td>
@@ -166,7 +166,7 @@ $(function () {
                 center: ['50%', '75%']
             }
         },
-        colors: ['#49bf67', '#fcd052', '#f34541'],
+        colors: ['#afe3bc', '#fdda79', '#cc6a68'],
         tooltip: {
             enabled: false,
         },
