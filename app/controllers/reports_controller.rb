@@ -26,9 +26,10 @@ class ReportsController < ApplicationController
     report_string = File.open(params[:report][:report].path).read.to_s.gsub('\r', '\n')
     ::CSV.parse(report_string.gsub("\r", "\n"), col_sep: "\t", headers: true).each do |row|
       next unless row.to_hash["MlsNum"].present?
+      @town = row.to_hash["Town"]
       LineCreator.create(@report, row.to_hash)
     end
-    @report.name = params[:report][:name] || Date.today.to_s
+    @report.name = params[:report][:name].strip.present? ? params[:report][:name] : "#{@town} - #{Date.today.month.to_s}/#{Date.today.year.to_s}"
     @report.save!
     redirect_to @report
   end
