@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   resources :reports
+  resources :lines
+
 
   root 'reports#index'
 
