@@ -145,10 +145,10 @@ $(function () {
             plotShadow: false
         },
         title: {
-            text: 'Lights <br/>  Breakdown',
+            text: "<%= @report.name %>",
             align: 'center',
             verticalAlign: 'middle',
-            y: 50
+            y: 75
         },
         plotOptions: {
             pie: {
@@ -172,7 +172,7 @@ $(function () {
         },
         series: [{
             type: 'pie',
-            name: 'Lights Breakdown',
+            name: "<%= @report.name %>",
             innerSize: '50%',
             data: [
                 ['',  <%= @report.percent_green %>],
