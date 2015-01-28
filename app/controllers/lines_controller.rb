@@ -14,6 +14,6 @@ class LinesController < ApplicationController
 
   private
   def line_params
-    params.require(:line).permit(:sale_price)
+    params.require(:line).permit(:sale_price, :list_price, :original_list_price)
   end
 end

@@ -103,8 +103,8 @@
                   <% @report.lines.send(scope).sort_by(&:olp_to_sp_percentage).reverse.each do |line| %>
                     <tr id="<%= line.id %>" class="<%= line.status %>-background">
                       <td><%= line.address %></td>
-                      <td><%= number_to_currency line.original_list_price, precision: 0 %></td>
-                      <td><%= number_to_currency line.list_price, precision: 0 %></td>
+                      <td><%= number_to_currency((best_in_place line, :original_list_price, :as => :input)) %></td>
+                      <td><%= number_to_currency((best_in_place line, :list_price, :as => :input)) %></td>
                       <td><%= number_to_currency((best_in_place line, :sale_price, :as => :input)) %></td>
                       <td><%= number_to_percentage(line.olp_to_sp_percentage, precision: 0) %></td>
                       <td><%= line.days_on_market %></td>

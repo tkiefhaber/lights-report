@@ -15,6 +15,6 @@ class Line < ActiveRecord::Base
   end
 
   def olp_to_sp_percentage
-    @olp_to_sp_percentage ||= (sale_price / original_list_price) * 100
+    @olp_to_sp_percentage ||= (sale_price.to_f / original_list_price.to_f) * 100
   end
 end

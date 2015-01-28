@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140808121546) do
+ActiveRecord::Schema.define(version: 20150128022740) do
 
   create_table "lines", force: true do |t|
     t.string   "address"
-    t.float    "original_list_price"
-    t.float    "list_price"
-    t.float    "sale_price"
+    t.integer  "original_list_price"
+    t.integer  "list_price"
+    t.integer  "sale_price"
     t.integer  "days_on_market"
     t.integer  "rooms"
     t.integer  "beds"

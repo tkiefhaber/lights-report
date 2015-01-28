@@ -81,7 +81,11 @@ class Report < ActiveRecord::Base
     end
 
     def avg_olp_to_sp_percentage
-      (lines.map(&:olp_to_sp_percentage).inject(:+) / lines.count).to_i
+      begin
+        (lines.map(&:olp_to_sp_percentage).inject(:+) / lines.count).to_f
+      rescue
+        0.to_f
+      end
     end
 
     def avg_days_on_market
