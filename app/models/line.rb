@@ -1,8 +1,8 @@
 class Line < ActiveRecord::Base
   belongs_to :report
-  scope :green,  -> { where('sale_price / original_list_price >= 1.0') }
-  scope :yellow, -> { where('sale_price / original_list_price < 1.0 AND sale_price / original_list_price >= 0.9') }
-  scope :red,    -> { where('sale_price / original_list_price < 0.9') }
+  scope :green,  -> { where('CAST(sale_price AS FLOAT) / CAST(original_list_price AS FLOAT) >= 1.0') }
+  scope :yellow, -> { where('CAST(sale_price AS FLOAT) / CAST(original_list_price AS FLOAT) < 1.0 AND CAST(sale_price AS FLOAT) / CAST(original_list_price AS FLOAT) >= 0.9') }
+  scope :red,    -> { where('CAST(sale_price AS FLOAT) / CAST(original_list_price AS FLOAT) < 0.9') }
 
   def status
     if olp_to_sp_percentage >= 100
