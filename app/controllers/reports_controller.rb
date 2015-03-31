@@ -34,7 +34,7 @@ class ReportsController < ApplicationController
       @report.save!
       redirect_to @report
     rescue => e
-      flash[:error] = e.message
+      flash[:error] = "There was an error creating the report: #{e.message}, maybe check the file you're uploading to make sure all the columns look normal"
       redirect_to :back
     end
   end

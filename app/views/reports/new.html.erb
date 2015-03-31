@@ -2,6 +2,10 @@
 <br/>
 <br/>
 <div class='box box-nomargin'>
+  <% flash.each do |name, msg| %>
+    <%= content_tag :div, msg, class: name %>
+  <% end %>
+
   <div class='box-content'>
 
     <div class='text-center'>
