@@ -9,6 +9,9 @@
     <td>Sale Price</td>
     <td>OLP/SP</td>
     <td>Days on Market</td>
+    <% if @report.show_units? %>
+      <td>Units</td>
+    <% end %>
     <td>Rooms</td>
     <td>Beds</td>
     <td>Baths</td>
@@ -26,6 +29,9 @@
         <td><%= number_to_currency obj.avg_sale_price, precision: 0 %></td>
         <td><%= number_to_percentage obj.avg_olp_to_sp_percentage, precision: 0 %></td>
         <td><%= obj.avg_days_on_market %></td>
+        <% if @report.show_units? %>
+          <td><%= obj.avg_units %></td>
+        <% end %>
         <td><%= obj.avg_rooms %></td>
         <td><%= obj.avg_beds %></td>
         <td><%= obj.avg_baths %></td>
@@ -39,6 +45,9 @@
       <td><%= number_to_currency @report.avg_sp, precision: 0 %></td>
       <td><%= number_to_percentage @report.avg_olp_to_sp, precision: 0 %></td>
       <td><%= @report.avg_dom %></td>
+      <% if @report.show_units? %>
+        <td><%= @report.avg_units %></td>
+      <% end %>
       <td><%= @report.avg_rooms %></td>
       <td><%= @report.avg_beds %></td>
       <td><%= @report.avg_baths %></td>
@@ -56,6 +65,9 @@
       <td>Sale Price</td>
       <td>OLP/SP</td>
       <td>Days on Market</td>
+      <% if @report.show_units? %>
+        <td>Units</td>
+      <% end %>
       <td>Rooms</td>
       <td>Beds</td>
       <td>Baths</td>
@@ -70,6 +82,9 @@
           <td><%= number_to_currency line.sale_price, precision: 0 %></td>
           <td><%= number_to_percentage line.olp_to_sp_percentage, precision: 0 %></td>
           <td><%= line.days_on_market %></td>
+          <% if @report.show_units? %>
+            <td><%= line.units %></td>
+          <% end %>
           <td><%= line.rooms %></td>
           <td><%= line.beds %></td>
           <td><%= line.baths %></td>
@@ -84,6 +99,9 @@
         <td><h5><%= number_to_currency obj.avg_sale_price %></h5></td>
         <td><h5><%= number_to_percentage obj.avg_olp_to_sp_percentage %></h5></td>
         <td><h5><%= obj.avg_days_on_market %></h5></td>
+        <% if @report.show_units? %>
+          <td><h5><%= obj.avg_units %></h5></td>
+        <% end %>
         <td><h5><%= obj.avg_rooms %></h5></td>
         <td><h5><%= obj.avg_beds %></h5></td>
         <td><h5><%= obj.avg_baths %></h5></td>

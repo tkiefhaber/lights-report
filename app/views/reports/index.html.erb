@@ -11,6 +11,12 @@
     </div>
   </div>
 </div>
+<% if flash[:warning].present? %>
+  <div class="alert alert-danger fade in">
+    <a href="#" class="close" data-dismiss="alert">&times;</a>
+    <strong>Heads Up!</strong>  <%= flash[:warning] %>
+  </div>
+<% end %>
 <div class="row">
   <div class="col-sm-12">
     <div class="box bordered-box green-border">

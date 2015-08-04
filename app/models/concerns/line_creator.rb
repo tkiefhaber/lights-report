@@ -20,6 +20,7 @@ class LineCreator
       list_price:          list_price,
       sale_price:          sale_price,
       days_on_market:      days_on_market,
+      units:               units,
       rooms:               rooms,
       beds:                beds,
       baths:               baths,
@@ -48,6 +49,10 @@ class LineCreator
 
   def days_on_market
     row["DOMAct"].to_i
+  end
+
+  def units
+    row["NumUnits"].present? ? row["NumUnits"].to_i : nil
   end
 
   def rooms

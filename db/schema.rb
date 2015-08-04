@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150128022740) do
+ActiveRecord::Schema.define(version: 20150804133842) do
 
   create_table "lines", force: true do |t|
     t.string   "address"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20150128022740) do
     t.integer  "report_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "units"
   end
 
   add_index "lines", ["report_id"], name: "index_lines_on_report_id"

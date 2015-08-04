@@ -61,6 +61,16 @@ class Report < ActiveRecord::Base
     lines.average(:baths).to_i
   end
 
+  def avg_units
+    if show_units?
+      lines.average(:units).to_i
+    end
+  end
+
+  def show_units?
+    lines.pluck(:units).compact.present?
+  end
+
 
   ViewObj = Struct.new(:report, :scope) do
 
@@ -90,6 +100,12 @@ class Report < ActiveRecord::Base
 
     def avg_days_on_market
       lines.average(:days_on_market).to_i
+    end
+
+    def avg_units
+      if report.show_units?
+        lines.average(:units).to_i
+      end
     end
 
     def avg_rooms

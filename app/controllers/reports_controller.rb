@@ -2,7 +2,11 @@ require 'csv'
 class ReportsController < ApplicationController
 
   def index
-    @reports = Report.all
+    @reports = Report.order(created_at: :desc)
+    record_count = Report.count + Line.count
+    if record_count > 8500
+      flash[:warning] = "You've got #{record_count} items in the database, which has a limit of 10,000, please delete some old reports to free up space"
+    end
   end
 
   def show
