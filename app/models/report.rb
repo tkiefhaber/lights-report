@@ -50,15 +50,15 @@ class Report < ActiveRecord::Base
   end
 
   def avg_rooms
-    lines.average(:rooms).to_i
+    lines.average(:rooms).to_f.round(1)
   end
 
   def avg_beds
-    lines.average(:beds).to_i
+    lines.average(:beds).to_f.round(1)
   end
 
   def avg_baths
-    lines.average(:baths).to_i
+    lines.average(:baths).to_f.round(1)
   end
 
   def avg_units
@@ -109,15 +109,15 @@ class Report < ActiveRecord::Base
     end
 
     def avg_rooms
-      lines.average(:rooms).to_i
+      lines.average(:rooms).to_f.round(1)
     end
 
     def avg_beds
-      lines.average(:beds).to_i
+      lines.average(:beds).to_f.round(1)
     end
 
     def avg_baths
-      lines.average(:baths).to_i
+      lines.average(:baths).to_f.round(1)
     end
 
     def count
