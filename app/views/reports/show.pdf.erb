@@ -1,76 +1,77 @@
 <%= wicked_pdf_stylesheet_link_tag "application" -%>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="box">
-      <div class="box box-content">
-        <p><%= @report.name %></p>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="box">
+        <div class="box box-content">
+          <p><%= @report.name %></p>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="box">
-      <div class="box-header white-background">
-        <div class="title">Market Breakdown</div>
-      </div>
-      <div class="">
-        <table class='table table-bordered'>
-          <thead>
-            <td># of homes</td>
-            <td>Original List Price</td>
-            <td>List Price</td>
-            <td>Sale Price</td>
-            <td>OLP/SP</td>
-            <td>Days on Market</td>
-            <% if @report.show_units? %>
-              <td>Units</td>
-            <% end %>
-            <td>Rooms</td>
-            <td>Beds</td>
-            <td>Baths</td>
-            <td>Marketshare</td>
-          </thead>
-          <tbody>
-            <% ['green', 'yellow', 'red'].each do |scope| %>
-              <% next unless @report.lines.send("#{scope}".to_sym).present? %>
-              <% obj = @report.send("#{scope}_average".to_sym) %>
-              <% color = scope == 'yellow' ? 'banana' : scope %>
-              <tr class="<%= color %>-background">
-                <td><%= obj.count %></td>
-                <td><%= number_to_currency obj.avg_original_list_price, precision: 0 %></td>
-                <td><%= number_to_currency obj.avg_list_price, precision: 0 %></td>
-                <td><%= number_to_currency obj.avg_sale_price, precision: 0 %></td>
-                <td><%= number_to_percentage obj.avg_olp_to_sp_percentage, precision: 0 %></td>
-                <td><%= obj.avg_days_on_market %></td>
-                <% if @report.show_units? %>
-                  <td><%= obj.avg_units %></td>
-                <% end %>
-                <td><%= obj.avg_rooms %></td>
-                <td><%= obj.avg_beds %></td>
-                <td><%= obj.avg_baths %></td>
-                <td><%= number_to_percentage (@report.send("percent_#{scope}".to_sym) * 100), precision: 0 %></td>
-              </tr>
-            <% end %>
-            <tr>
-              <td><%= @report.lines.count %></td>
-              <td><%= number_to_currency @report.avg_olp, precision: 0 %></td>
-              <td><%= number_to_currency @report.avg_lp, precision: 0 %></td>
-              <td><%= number_to_currency @report.avg_sp, precision: 0 %></td>
-              <td><%= number_to_percentage @report.avg_olp_to_sp, precision: 0 %></td>
-              <td><%= @report.avg_dom %></td>
+  <div class="row">
+    <div class="col-12">
+      <div class="box">
+        <div class="box-header white-background">
+          <div class="title">Market Breakdown</div>
+        </div>
+        <div class="">
+          <table class='table table-bordered'>
+            <thead>
+              <td># of homes</td>
+              <td>Original List Price</td>
+              <td>List Price</td>
+              <td>Sale Price</td>
+              <td>OLP/SP</td>
+              <td>Days on Market</td>
               <% if @report.show_units? %>
-                <td><%= @report.avg_units %></td>
+                <td>Units</td>
               <% end %>
-              <td><%= @report.avg_rooms %></td>
-              <td><%= @report.avg_beds %></td>
-              <td><%= @report.avg_baths %></td>
-              <td><%= number_to_percentage @report.total_percentage * 100, precision: 0 %></td>
-            </tr>
-          </tbody>
-        </table>
+              <td>Rooms</td>
+              <td>Beds</td>
+              <td>Baths</td>
+              <td>Marketshare</td>
+            </thead>
+            <tbody>
+              <% ['green', 'yellow', 'red'].each do |scope| %>
+                <% next unless @report.lines.send("#{scope}".to_sym).present? %>
+                <% obj = @report.send("#{scope}_average".to_sym) %>
+                <% color = scope == 'yellow' ? 'banana' : scope %>
+                <tr class="<%= color %>-background">
+                  <td><%= obj.count %></td>
+                  <td><%= number_to_currency obj.avg_original_list_price, precision: 0 %></td>
+                  <td><%= number_to_currency obj.avg_list_price, precision: 0 %></td>
+                  <td><%= number_to_currency obj.avg_sale_price, precision: 0 %></td>
+                  <td><%= number_to_percentage obj.avg_olp_to_sp_percentage, precision: 0 %></td>
+                  <td><%= obj.avg_days_on_market %></td>
+                  <% if @report.show_units? %>
+                    <td><%= obj.avg_units %></td>
+                  <% end %>
+                  <td><%= obj.avg_rooms %></td>
+                  <td><%= obj.avg_beds %></td>
+                  <td><%= obj.avg_baths %></td>
+                  <td><%= number_to_percentage (@report.send("percent_#{scope}".to_sym) * 100), precision: 0 %></td>
+                </tr>
+              <% end %>
+              <tr>
+                <td><%= @report.lines.count %></td>
+                <td><%= number_to_currency @report.avg_olp, precision: 0 %></td>
+                <td><%= number_to_currency @report.avg_lp, precision: 0 %></td>
+                <td><%= number_to_currency @report.avg_sp, precision: 0 %></td>
+                <td><%= number_to_percentage @report.avg_olp_to_sp, precision: 0 %></td>
+                <td><%= @report.avg_dom %></td>
+                <% if @report.show_units? %>
+                  <td><%= @report.avg_units %></td>
+                <% end %>
+                <td><%= @report.avg_rooms %></td>
+                <td><%= @report.avg_beds %></td>
+                <td><%= @report.avg_baths %></td>
+                <td><%= number_to_percentage @report.total_percentage * 100, precision: 0 %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
 </div>
-

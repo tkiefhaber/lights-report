@@ -1,4 +1,4 @@
-class ChangeColumnTypesOnLines < ActiveRecord::Migration
+class ChangeColumnTypesOnLines < ActiveRecord::Migration[5.2]
   def change
     change_column :lines, :original_list_price, :float
     change_column :lines, :list_price, :float
