@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,30 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804133842) do
+ActiveRecord::Schema.define(version: 2015_08_04_133842) do
 
-  create_table "lines", force: true do |t|
-    t.string   "address"
-    t.integer  "original_list_price"
-    t.integer  "list_price"
-    t.integer  "sale_price"
-    t.integer  "days_on_market"
-    t.integer  "rooms"
-    t.integer  "beds"
-    t.integer  "baths"
-    t.date     "closed"
-    t.integer  "report_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "units"
+  create_table "lines", force: :cascade do |t|
+    t.string "address"
+    t.integer "original_list_price"
+    t.integer "list_price"
+    t.integer "sale_price"
+    t.integer "days_on_market"
+    t.integer "rooms"
+    t.integer "beds"
+    t.integer "baths"
+    t.date "closed"
+    t.integer "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "units"
+    t.index ["report_id"], name: "index_lines_on_report_id"
   end
 
-  add_index "lines", ["report_id"], name: "index_lines_on_report_id"
-
-  create_table "reports", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "name"
+  create_table "reports", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name"
   end
 
 end

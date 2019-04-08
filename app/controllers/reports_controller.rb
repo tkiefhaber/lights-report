@@ -14,8 +14,10 @@ class ReportsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "lights_report_#{@report.id}",
-               :template => 'reports/show.pdf.erb'
+        render pdf: "lights_report_#{@report.id}",
+               template: 'reports/show.pdf.erb',
+               dpi: '650'
+              
       end
       format.xls
     end
